@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+share a post
+{% endblock title %}
+
+
+{% block content %}
+
+
+{% if sent %}
+<h1>메일이 성공적으로 보내졌습니다.</h1>
+<p>{{post.title}}이 {{form.cleaned_data.to}}에게 보내졌습니다.</p>
+{% else %}
+<h1>Share "{{post.title}}" by Email</h1>
+
+<form action="." method="post">
+
+
+
+    {% csrf_token %}
+    {{ form |crispy }}
+
+    <button type="submit">제출하기</button>
+</form>
+{% endif %}
+
+
+{% endblock content %}
